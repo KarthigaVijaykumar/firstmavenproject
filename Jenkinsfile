@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Test'){
             steps{
-                sg 'mvn test'
+                sh 'mvn test'
             }
             post{
             always{
