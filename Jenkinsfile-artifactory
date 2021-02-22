@@ -21,7 +21,7 @@ pipeline{
         }
         stage('collect artifact'){
           steps{
-            archiveArtifacts artifacts : 'targer/*.jar',followSymlinks : false
+            archiveArtifacts artifacts : 'target/*.jar',followSymlinks : false
             }
             }
         stage('deploy to artifactory'){
