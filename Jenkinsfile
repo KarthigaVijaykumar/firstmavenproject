@@ -1,15 +1,17 @@
 pipeline{
-    agent any
-    tools{
-        maven 'Maven'
+   agent {
+    docker {
+      image 'maven:3.6.3-jdk-11'
+      args '-v /root/.m2:/root/.m2'
     }
-    stages{
-        stage('Package'){
-            steps{
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test'){
+  }
+  stages {
+      stage("Maven Build"){
+          steps{
+              sh 'mvn -B -DskipTests clean package'
+          }
+      }
+      stage('Maven Test'){
             steps{
                 sh 'mvn test'
             }
@@ -19,5 +21,5 @@ pipeline{
             }
         }
         }
-    }
+  }
 }
